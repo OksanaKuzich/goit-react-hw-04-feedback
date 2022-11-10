@@ -9,18 +9,18 @@ export const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const handleIncrementGood = e => {
+  const handleIncrement = e => {
     const currentName = e.target.name;
     
     switch (currentName) {
       case 'good':
-        setGood(good + 1);
+        setGood(prevState => prevState + 1);
         break;
       case 'neutral':
-        setNeutral(neutral + 1);
+        setNeutral(prevState => prevState + 1);
         break;
       case 'bad':
-        setBad(bad + 1);
+        setBad(prevState => prevState + 1);
         break;
       default:
         return
@@ -39,7 +39,7 @@ export const App = () => {
   return (
     <>
       <Section title="Please leave feedback">
-        <FeedbackOptions options={Object.keys({good, neutral, bad})} onLeaveFeedback={handleIncrementGood} />
+        <FeedbackOptions options={Object.keys({good, neutral, bad})} onLeaveFeedback={handleIncrement} />
       </Section>
       <Section title="Statistics">
         {countTotalFeedback() === 0 ? (
